@@ -10,10 +10,10 @@ Bill
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title">Add New Bill</h4>
+                                        <h4 class="header-title">Edit Bill</h4>
                                        
 
-                                         {{-- {!! Form::open(['route' => 'drivertruck.store', 'method' => 'post' ]) !!} --}}
+                                         {{-- {!! Form::model($goodType,['route' => ['goodtypes.update',$goodType->id], 'method' => 'PATCH']) !!} --}}
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="inputEmail4" class="col-form-label">Patient</label>
@@ -118,7 +118,7 @@ Bill
 
                                            
                                          <button type="button" class="btn btn-info waves-effect waves-light">
-                                                    Save<span class="btn-label-right"><i class="far fa-save"></i></span>
+                                                    Update<span class="btn-label-right"><i class="far fa-save"></i></span>
                                                 </button>
 
                                         </form>

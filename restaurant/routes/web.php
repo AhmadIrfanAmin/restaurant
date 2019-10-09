@@ -29,4 +29,8 @@ Route::get('orders', 'Admin\OrderController@index')->name('orders');
 Route::get('zones', 'Admin\ZoneController@index')->name('zones');
 Route::get('zone/add', 'Admin\ZoneController@create')->name('add.zone');
 Route::get('zone/store', 'Admin\ZoneController@store')->name('store.zone');
+Route::get('delivery-boys', 'Admin\DeliveryBoyController@index')->name('delivery-boys');
+Route::get('delivery-boys/add', 'Admin\DeliveryBoyController@create')->name('add.delivery-boys');
+Route::get('restaurants', 'Admin\RestaurantController@index')->name('restaurants');
+Route::get('restaurant/add', 'Admin\RestaurantController@create')->name('add.restaurant');
 });

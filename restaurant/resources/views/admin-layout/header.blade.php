@@ -12,8 +12,8 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                     <!-- item-->
-                     <div class="dropdown-item noti-title">
+                       <!-- item-->
+                       <div class="dropdown-item noti-title">
                         <h5 class="m-0 text-white">
                             Welcome !
                         </h5>
@@ -36,23 +36,23 @@
         <div class="logo-box">
             <a href="{{ url('admin/dashboard') }}" class="logo text-center">
                 <span class="logo-lg">
-                 <img src="{{ URL::asset('public/assets/images/logo-light.png')}}" alt="logo-image" style="width: 60%;height: auto;" />
-                 <!-- <span class="logo-lg-text-light">Upvex</span> -->
+                    {{--  <img src="{{ URL::asset('public/assets/images/logo-light.png')}}" alt="logo-image" style="width: 60%;height: auto;" /> --}}
+                    <span class="logo-lg-text-light">Restaurant</span>
+                </span>
+                <span class="logo-sm">
+                 <span class="logo-sm-text-dark">R</span>
              </span>
-             <span class="logo-sm">
-               <span class="logo-sm-text-dark">R</span>
-           </span>
-       </a>
-   </div>
-   <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
-    <li>
-        <button class="button-menu-mobile waves-effect waves-light">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </li>
-</ul>
+         </a>
+     </div>
+     <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+        <li>
+            <button class="button-menu-mobile waves-effect waves-light">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </li>
+    </ul>
 </div>
 <!-- end Topbar -->
 <!-- ========== Left Sidebar Start ========== -->
@@ -63,7 +63,7 @@
             <ul class="metismenu" id="side-menu">
                 <li class="menu-title">Navigation</li>
                 <li>
-                    <a href="{{ url('staff-panel/dashboard') }}">
+                    <a href="{{ url('admin/dashboard') }}">
                         <i class="la la-dashboard"></i>
                         <span> Dashboards </span>
                     </a>
@@ -74,69 +74,69 @@
                         <span> Zones </span>
                     </a>
                 </li>
-               
-                    <li>
+                
+                <li>
 
-                        <a href="javascript: void(0);">
+                    <a href="javascript: void(0);">
 
-                            <i class="fas fa-pencil-alt"></i>
-                            <span> Orders </span>
+                        <i class="fas fa-pencil-alt"></i>
+                        <span> Orders </span>
 
-                            <span class="menu-arrow"></span>
+                        <span class="menu-arrow"></span>
+
+                    </a>
+
+                    <ul class="nav-second-level" aria-expanded="false">
+
+                       <li>
+                        <a href="{{route('orders')}}" >
+
+                            <i class="fas fa-check-circle mr-1"></i>
+
+                            <span>Assign Orders</span>
 
                         </a>
 
-                        <ul class="nav-second-level" aria-expanded="false">
+                    </li>
+                    <li>
+                        <a href="#" >
 
-                             <li>
-                                <a href="{{route('orders')}}" >
+                            <i class="mdi mdi-history mr-1"></i>
 
-                                    <i class="fas fa-check-circle mr-1"></i>
+                            <span>History</span>
 
-                                    <span>Assign Orders</span>
-
-                                </a>
-
-                            </li>
-                            <li>
-                                <a href="#" >
-
-                                    <i class="mdi mdi-history mr-1"></i>
-
-                                    <span>History</span>
-
-                                </a>
-
-                            </li>
-
-                            
-
-                        </ul>
+                        </a>
 
                     </li>
 
+                    
+
+                </ul>
+
+            </li>
 
 
-                
 
-                <li>
-                    <a href="#">
-                        <i class="mdi mdi-food-fork-drink"></i>
-                        <span>Restaurants</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user-cog"></i>
-                        <span>Delivery Boys</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- End Sidebar -->
-        <div class="clearfix"></div>
+            
+
+            <li>
+                <a href="{{route('restaurants')}}">
+                    <i class="mdi mdi-food-fork-drink"></i>
+                    <span>Restaurants</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('delivery-boys')}}">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Delivery Boys</span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <!-- Sidebar -left -->
+    <!-- End Sidebar -->
+    <div class="clearfix"></div>
+</div>
+<!-- Sidebar -left -->
 </div>
 
             <!-- Left Sidebar End -->
