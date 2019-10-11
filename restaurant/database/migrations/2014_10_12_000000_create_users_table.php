@@ -21,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            //$table->enum('status',['online','','','','']);
+            $table->string('status');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('permanent_address')->nullable();
         });
     }
 
