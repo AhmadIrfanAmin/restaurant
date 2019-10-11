@@ -13,65 +13,58 @@ Zone
     <div class="col-12">
       <div class="card-box">
         <a href="{{ route('add.zone')}}" class="btn  btn-dark waves-effect waves-light float-right">
-          <span class="btn-label"><i class="fas fa-plus"></i></span>Add Zone
+        <span class="btn-label"><i class="fas fa-plus"></i></span>Add Zone
         </a>
         <h4 class="header-title mb-4">All Zones</h4>
         <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
           <thead>
             <tr>
-             <th>#</th>
-
-             <th>Zone Name</th>
-             <th>Show Zone</th>
-             <th>Status</th>
-             <th >Action</th>
-
-           </tr>
-
-         </thead>
-         <tbody>
+              <th>#</th>
+              <th>Zone Name</th>
+              <th>Show Zone</th>
+              <th>Status</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
             @foreach($zones as $zone) 
               <tr>
                 <td>
                   {{ $zone->id }}
                 </td>
                 <td>
-                   {{ $zone->name }}
+                  {{ $zone->name }}
                 </td>
                 <td>
                   <button type="button" class="btn btn-info waves-effect waves-light map-view" data-value="{{ $zone->id }}"><i class="fas fa-map"></i></button>
                 </td>
                 <td>
                   <button type="button" class="btn btn-{{ WebHelper::get_status_class($zone->status) }} btn-xs waves-effect waves-light ">{{ WebHelper::upperfirst($zone->status) }}
-                  </button>
+                </button>
                 </td>
                 <td>
                   <div class="btn-group dropdown">
                     <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false">
-                        <i class="mdi mdi-dots-horizontal"></i>
+                    <i class="mdi mdi-dots-horizontal"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="#">
+                      <i class="mdi mdi-pencil mr-2 text-muted font-18 vertical-middle"></i>Edit
                       </a>
-                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">
-                          <i class="mdi mdi-pencil mr-2 text-muted font-18 vertical-middle"></i>Edit
-                        </a>
-                        <a class="dropdown-item" href="#"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Delete
-                        </a>
-                      </div>
+                      <a class="dropdown-item" href="#"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Delete
+                      </a>
                     </div>
-                  </td>
+                  </div>
+                </td>
               </tr>
             @endforeach
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div><!-- end col -->
-
+          </tbody>
+        </table>
+      </div>
+    </div><!-- end col -->
   </div>
 
-  <!-- end row-->
+    <!-- end row-->
 
 
 
@@ -100,52 +93,42 @@ Zone
             },'modal-remove-orange');
           });
 
-       function modal(header, body, footer, size, center, callback,classes) {
-        header = header !== undefined ? header : 'Modal header';
-        body = body !== undefined ? body : 'Modal body';
-        footer = footer !== undefined ? footer : 'Modal footer';
-        center = center !== undefined ? 'modal-dialog-centered' : '';
-        size = size !== undefined ? size : '';
-        classes = classes !== undefined ? classes : '';
-        let closeBtn = `<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>`;
+        function modal(header, body, footer, size, center, callback,classes) {
+          header = header !== undefined ? header : 'Modal header';
+          body = body !== undefined ? body : 'Modal body';
+          footer = footer !== undefined ? footer : 'Modal footer';
+          center = center !== undefined ? 'modal-dialog-centered' : '';
+          size = size !== undefined ? size : '';
+          classes = classes !== undefined ? classes : '';
+          let closeBtn = `<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>`;
 
-        let $modalId = new Date().getSeconds();
-        let $modal = `<div class="modal fade ${classes}" tabindex="-1" role="dialog" id="modal-${$modalId}">
+          let $modalId = new Date().getSeconds();
+          let $modal = `<div class="modal fade ${classes}" tabindex="-1" role="dialog" id="modal-${$modalId}">
           <div class="modal-dialog ${center} ${size}" role="document">
-            <div class="modal-content border-orange">
-              <div class="modal-header">
-                ${header}${closeBtn}
-              </div>
-              <div class="modal-body">
-                ${body}
-              </div>
-              <div class="modal-footer">
-                ${footer}
-              </div>
-            </div>
+          <div class="modal-content border-orange">
+          <div class="modal-header">
+          ${header}${closeBtn}
           </div>
-        </div>`;
+          <div class="modal-body">
+          ${body}
+          </div>
+          <div class="modal-footer">
+          ${footer}
+          </div>
+          </div>
+          </div>
+          </div>`;
 
           $(document.body).append($modal);
           $('#modal-'+$modalId).modal('show');
 
           $(document).on('hidden.bs.modal', '#modal-'+$modalId, function(e) {
-            $('#modal-'+$modalId).remove();
+          $('#modal-'+$modalId).remove();
           });
           if (callback !== undefined && typeof callback == 'function') {
-            return callback('modal-'+$modalId);
+          return callback('modal-'+$modalId);
           }
         }
-      });
-
-  </script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-     
     });
-
-
-
-      
   </script>
 @stop
