@@ -25,12 +25,12 @@ Zone
 
                     <div class="form-group ">
                         <label  class="col-form-label">Zone Name</label>
-                        <input type="text" class="form-control"  required name="name">
+                        <input type="text" class="form-control"   name="name">
                     </div>
 
                     <div class="form-group ">
                         <label for="inputPassword4" class="col-form-label">Zone List</label>
-                        <textarea class="form-control" rows="10" required name="route_list"></textarea>
+                        <textarea class="form-control" rows="10"  name="route_list"></textarea>
                     </div>
                     <div class="form-group">
                         <select class="selectpicker" data-style="btn-light" name="status">

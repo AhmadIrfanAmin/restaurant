@@ -21,7 +21,7 @@ Zone
             <tr>
               <th>#</th>
               <th>Zone Name</th>
-              <th>Show Zone</th>
+              <th>Show Map</th>
               <th>Status</th>
               <th >Action</th>
             </tr>
@@ -39,8 +39,8 @@ Zone
                   <button type="button" class="btn btn-info waves-effect waves-light map-view" data-value="{{ $zone->id }}"><i class="fas fa-map"></i></button>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-{{ WebHelper::get_status_class($zone->status) }} btn-xs waves-effect waves-light ">{{ WebHelper::upperfirst($zone->status) }}
-                </button>
+                  <span  class="badge badge-{{ WebHelper::get_status_class($zone->status) }} waves-effect waves-light ">{{ WebHelper::upperfirst($zone->status) }}
+                </span>
                 </td>
                 <td>
                   <div class="btn-group dropdown">

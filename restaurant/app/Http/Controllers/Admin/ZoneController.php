@@ -23,7 +23,7 @@ class ZoneController extends Controller
 
 		$this->validate(request(), [
 			'name' => 'required',
-			'route_list' => 'required',
+			'route_list' => 'required|regex:/\d+\.\d+\:\d+\.\d+/',
 			'status' =>'required'
 		]);
 		$get_contents_array = explode(",",$request->route_list);
@@ -67,4 +67,6 @@ class ZoneController extends Controller
 	    	exit;
 	    }
 	}
+
+
 }
