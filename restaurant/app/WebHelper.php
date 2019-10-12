@@ -29,7 +29,26 @@ class WebHelper {
 	}
 	public static function get_restaurant_name($rest_id) {
 		return Restaurant::where('id',$rest_id)->pluck('name')->first();
-	}	
+	}
+	public static function  get_order_status($status) {
+        if($status=='pending'){
+        	$status_class ='primary';
+
+		} else if($status=='assigned') {
+			$status_class ='info';
+
+		} else if($status=='canceled') {
+			$status_class ='danger';
+
+		} else if($status=='pickedup') {
+			$status_class ='purple';
+			
+		} else if($status=='complete') {
+			$status_class ='success';
+			
+		}
+		return $status_class;
+    }	
 
 	
 }

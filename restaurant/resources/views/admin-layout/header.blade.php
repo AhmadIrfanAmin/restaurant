@@ -85,13 +85,31 @@
                             <ul class="nav-second-level" aria-expanded="false">
 
                                 <li>
-                                    <a href="{{route('orders')}}" >
+                                    <a href="{{route('orders','assigned')}}" >
                                         <i class="fas fa-check-circle mr-1"></i>
                                         <span>Assign Orders</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" >
+                                    <a href="{{route('orders','pending')}}" >
+                                        <i class="mdi mdi-history mr-1"></i>
+                                        <span>Pending</span>
+                                    </a>
+                                </li>
+                                 <li>
+                                    <a href="{{route('orders','pickedup')}}" >
+                                        <i class="fas fa-arrow-alt-circle-right mr-1"></i>
+                                        <span>Pickedup</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('orders','canceled')}}" >
+                                        <i class="far fa-trash-alt mr-1"></i>
+                                        <span>Canceled</span>
+                                    </a>
+                                </li>
+                                 <li>
+                                    <a href="{{route('orders')}}" >
                                         <i class="mdi mdi-history mr-1"></i>
                                         <span>History</span>
                                     </a>

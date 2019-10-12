@@ -22,10 +22,8 @@ Route::prefix('admin')->group(function () {
     return view('admin.register');
 });
 
-Route::get('dashboard', function () {
-    return view('admin.dashboard');
-});
-Route::get('orders', 'Admin\OrderController@index')->name('orders');
+Route::get('dashboard', 'Admin\DashboardController@index');
+Route::get('orders/{status?}', 'Admin\OrderController@index')->name('orders');
 Route::get('view-order/{order_id}', 'Admin\OrderController@view_order')->name('view.order');
 Route::get('zones', 'Admin\ZoneController@index')->name('zones');
 Route::get('zone/add', 'Admin\ZoneController@create')->name('add.zone');

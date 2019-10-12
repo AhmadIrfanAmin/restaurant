@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-	public function index() {
-		$orders = Order::all();
+	public function index($status='') {
+		if(empty($status)) {
+			$orders = Order::all();
+		} else {
+			
+			$orders = Order::where('status',$status)->get();
+		}
 		return view('admin.orders.index',compact('orders'));
 	}
 	public function view_order($order_id) {

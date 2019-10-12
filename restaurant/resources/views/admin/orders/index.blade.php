@@ -44,7 +44,7 @@ Order
                                     {{ WebHelper::get_restaurant_name($order->fk_restaurant_id) }}
                                 </td>
                                 <td>
-                                  <span  class="badge badge-{{ WebHelper::get_status_class($order->status) }} waves-effect waves-light ">{{ WebHelper::upperfirst($order->status) }}
+                                  <span  class="badge badge-{{ WebHelper::get_order_status($order->status) }} waves-effect waves-light ">{{ WebHelper::upperfirst($order->status) }}
                                   </span>
                                 </td>
                                 <td>
