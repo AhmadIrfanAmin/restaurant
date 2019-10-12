@@ -178,26 +178,4 @@
 <script src="{{ URL::asset('public/assets/js/pages/apexcharts.init.js')}}"></script>
 <!-- Init js -->
 
-<script type="text/javascript">
- $(document).ready(function() {
-  Morris.Donut({
-    element: 'morris-donut-example',
-    data: [
-    {label: "Total Sales", value: 12},
-    {label: "In-Store Sales", value: 30},
-    {label: "Mail-Order Sales", value: 20}
-    ],
-    backgroundColor: '#ccc',
-    labelColor: '#060',
-    colors: [
-    '#f0643b',
-    '#56c2d6',
-    '#657284'
-
-    ],
-    formatter: function (x) { return x + "%"}
-  });
-  var options={chart:{height:265,type:"line",zoom:{enabled:!1},toolbar:{show:!1}},colors:["#f0643b","#56c2d6"],dataLabels:{enabled:!0},stroke:{width:[3,3],curve:"smooth"},series:[{name:"High - 2018",data:[28,29,33,36,32,32,33]},{name:"Low - 2018",data:[12,11,14,18,17,13,13]}],title:{text:"Average High & Low Temperature",align:"left",style:{fontSize:"14px",color:"#666"}},grid:{row:{colors:["transparent","transparent"],opacity:.2},borderColor:"#f1f3fa"},markers:{style:"inverted",size:6},xaxis:{categories:["Jan","Feb","Mar","Apr","May","Jun","Jul"],title:{text:"Month"}},yaxis:{title:{text:"Temperature"},min:5,max:40},legend:{position:"top",horizontalAlign:"right",floating:!0,offsetY:-25,offsetX:-5},responsive:[{breakpoint:600,options:{chart:{toolbar:{show:!1}},legend:{show:!1}}}]};(chart=new ApexCharts(document.querySelector("#apex-line-111"),options)).render()
-});
-</script>
 @stop

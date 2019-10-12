@@ -6,10 +6,8 @@
       center: {lat: 31.5204, lng: 74.3587},
       mapTypeId: 'terrain'
     });
-
     // Define the LatLng coordinates for the polygon's path.
     var triangleCoords = JSON.parse('<?php echo  $get_file; ?>');
-
     // Construct the polygon.
     var bermudaTriangle = new google.maps.Polygon({
       paths: triangleCoords,
@@ -23,5 +21,5 @@
   }
 </script>
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCvg5nJBPlbUREVRoK_JewTqTVXkqmurY&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAztLRM2c-6I3w681cHGtNQgjLVzmIQdt0&callback=initMap">
 </script>

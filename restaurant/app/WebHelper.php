@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use App\Restaurant;
+
 class WebHelper {
 
 	
@@ -24,6 +26,9 @@ class WebHelper {
 	}
 	public static function upperfirst($val) {
 		return ucfirst($val);
+	}
+	public static function get_restaurant_name($rest_id) {
+		return Restaurant::where('id',$rest_id)->pluck('name')->first();
 	}	
 
 	

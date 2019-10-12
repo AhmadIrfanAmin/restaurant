@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
+	protected $fillable = [
+        'name','address','status','latitude','longitude','contact'
+    ];
     //
     public function orders()
     {

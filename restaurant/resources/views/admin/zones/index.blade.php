@@ -36,7 +36,7 @@ Zone
                   {{ $zone->name }}
                 </td>
                 <td>
-                  <button type="button" class="btn btn-info waves-effect waves-light map-view" data-value="{{ $zone->id }}"><i class="fas fa-map"></i></button>
+                  <button type="button" class="btn btn-info waves-effect waves-light map-view" data-value="{{ $zone->id }}"><i class="fas fa-map-marked-alt"></i></button>
                 </td>
                 <td>
                   <span  class="badge badge-{{ WebHelper::get_status_class($zone->status) }} waves-effect waves-light ">{{ WebHelper::upperfirst($zone->status) }}
@@ -92,43 +92,6 @@ Zone
               });
             },'modal-remove-orange');
           });
-
-        function modal(header, body, footer, size, center, callback,classes) {
-          header = header !== undefined ? header : 'Modal header';
-          body = body !== undefined ? body : 'Modal body';
-          footer = footer !== undefined ? footer : 'Modal footer';
-          center = center !== undefined ? 'modal-dialog-centered' : '';
-          size = size !== undefined ? size : '';
-          classes = classes !== undefined ? classes : '';
-          let closeBtn = `<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>`;
-
-          let $modalId = new Date().getSeconds();
-          let $modal = `<div class="modal fade ${classes}" tabindex="-1" role="dialog" id="modal-${$modalId}">
-          <div class="modal-dialog ${center} ${size}" role="document">
-          <div class="modal-content border-orange">
-          <div class="modal-header">
-          ${header}${closeBtn}
-          </div>
-          <div class="modal-body">
-          ${body}
-          </div>
-          <div class="modal-footer">
-          ${footer}
-          </div>
-          </div>
-          </div>
-          </div>`;
-
-          $(document.body).append($modal);
-          $('#modal-'+$modalId).modal('show');
-
-          $(document).on('hidden.bs.modal', '#modal-'+$modalId, function(e) {
-          $('#modal-'+$modalId).remove();
-          });
-          if (callback !== undefined && typeof callback == 'function') {
-          return callback('modal-'+$modalId);
-          }
-        }
-    });
+      });
   </script>
 @stop
