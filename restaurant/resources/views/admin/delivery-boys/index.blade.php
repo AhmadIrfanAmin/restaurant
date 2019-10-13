@@ -12,18 +12,16 @@ Delivery
   <div class="row">
         <div class="col-12">
           <div class="card-box">
-                <h4 class="header-title mb-4">All Delivery Boys</h4>
+                <h4 class="header-title mb-4">Delivery Boys</h4>
                 <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
                   <thead>
                         <tr>
                           <th>#</th>
                           <th>Name</th>
                           <th>Email</th>
-                          <th>Status</th>
                           <th>Contact</th>
                           <th>Permanent Address</th>
                           <th>Address Map</th>
-                          <th >Action</th>
                         </tr>
                   </thead>
                   <tbody>
@@ -38,10 +36,7 @@ Delivery
                                 <td>
                                   {{ $delivery_boy->email }}
                                 </td>
-                                <td>
-                                    <span  class="badge badge-{{ WebHelper::get_status_class($delivery_boy->status) }} waves-effect waves-light ">{{ WebHelper::upperfirst($delivery_boy->status) }}
-                                  </span>
-                                </td>
+                                
                                 <td>
                                   {{ $delivery_boy->contact }}
                                 </td>
@@ -51,12 +46,7 @@ Delivery
                                 <td>
                                    <button type="button" class="btn btn-info waves-effect waves-light map-address btn-xs" data-value="{{ $delivery_boy->id }}"><i class="fas fa-map-marker-alt"></i></button>
                                 </td>
-                               
-                                <td>
-                                    <button type="button" class="btn btn-info btn-xs waves-effect waves-light"><i class="fas fa-user-check"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs waves-effect waves-light"><i class="fas fa-user-times"></i></button>
-                                  
-                                </td>
+                              
                           </tr>
                         @endforeach
                     </tbody>
@@ -90,6 +80,7 @@ Delivery
               });
             });
           });
+        
       });
   </script>
 @stop

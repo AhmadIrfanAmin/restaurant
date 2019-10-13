@@ -48,7 +48,7 @@ Zone
                     <i class="mdi mdi-dots-horizontal"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{route('edit.zone', ['zone' => $zone->id])}}">
                       <i class="mdi mdi-pencil mr-2 text-muted font-18 vertical-middle"></i>Edit
                       </a>
                       <a class="dropdown-item" href="#"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Delete

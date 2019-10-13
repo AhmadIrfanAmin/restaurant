@@ -67,4 +67,37 @@ class ZoneController extends Controller
 	    	exit;
 	    }
 	}
+	public function edit($id) {
+		$get_zone_array= [];
+		$zone=Zone::find($id);
+		$points = $this->decodeString($zone->route_list);
+		foreach ($points as $point) {
+		$get_zone_array[] = implode(":",$point);
+		}
+		$get_zone= implode(",",$get_zone_array);
+		return view('admin.zones.edit',compact('zone','get_zone'));
+	}
+	public function update(Request $request, $id) {
+		$this->validate(request(), [
+			'name' => 'required',
+			'route_list' => 'required|regex:/\d+\.\d+\:\d+\.\d+/',
+			'status' =>'required'
+		]);
+		$get_contents_array = explode(",",$request->route_list);
+		$lat_long_array= [];
+		foreach ($get_contents_array as $get_data) {
+			$data =explode(":",$get_data);
+			$lat = trim(current($data));
+			$long =  trim(end($data));
+			$lat_long_array[]=[$lat,$long];
+		}
+		$route_list = $this->encodePoints($lat_long_array);
+		$zone = Zone::find($id);
+		$zone->route_list = $route_list;
+		$zone->name = $request->name;
+		$zone->status = $request->status;
+		$zone->save();
+		Session::flash('success', 'Zone Updated successfully!');
+		return redirect()->route('zones');
+    }
 }

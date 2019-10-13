@@ -12,7 +12,7 @@
 
                         <div class="col-md-6">
 
-                            2019 &copy; by <a href="">Resturant</a> 
+                            2019 &copy; by <a href="">DLV Express</a> 
 
                         </div>
 
@@ -124,6 +124,7 @@
     <script src="{{ URL::asset('public/assets/js/app.min.js')}}"></script>
 
     <script src="{{ URL::asset('public/assets/js/pages/tickets.js')}}"></script>
+    <script src="{{ URL::asset('public/assets/libs/jquery-toast/jquery.toast.min.js')}}"></script>
     <script type="text/javascript">
        
         function modal(header, body, footer, size, center, callback,classes) {

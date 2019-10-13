@@ -15,7 +15,8 @@
   <!-- plugin css -->
   <link href="{{asset('public/assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet">
   <!-- Plugins css -->
-  
+  <link href="{{asset('public/assets/css/jquery.toast.min.css')}}" rel="stylesheet">
+   <link href="{{asset('public/assets/libs/jquery-toast/jquery.toast.min.css')}}" rel="stylesheet" type="text/css" />
   <link href="{{asset('public/assets/libs/jquery-nice-select/nice-select.css')}}" rel="stylesheet">
   <link href="{{asset('public/assets/libs/switchery/switchery.min.css')}}" rel="stylesheet">
   <link href="{{asset('public/assets/libs/select2/select2.min.css')}}" rel="stylesheet">

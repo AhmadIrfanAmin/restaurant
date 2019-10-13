@@ -8,14 +8,31 @@ use Illuminate\Http\Request;
 
 class DeliveryBoyController extends Controller
 {
-	public function index($status='') {
-		if(empty($status)) {
-			$delivery_boys = User::all();
-		} else {
-			
-			$delivery_boys = User::where('status',$status)->get();
-		}
+	
+	public function index($status) {
+
+		$delivery_boys = User::where('user_status',$status)->get();
 		return view('admin.delivery-boys.index',compact('delivery_boys'));
+	}
+	public function all_delivery_boys() {
+		$delivery_boys = User::where('user_status','')->get();
+
+		return view('admin.delivery-boys.all-delivery-boys',compact('delivery_boys'));
+	}
+	public function change_status() {
+		$user = User::where('id',$_POST['user_id'])->first();
+		$user->user_status = $_POST['status'];
+        $user->save();
+
+        if(!$user){
+            $finalResult = array('msg' => 'error', 'response' => 'Something went');
+            echo json_encode($finalResult);
+            exit;
+        }else{            
+            $finalResult = array('msg' => 'success', 'response' => 'Delivery Boy has been '.$_POST['status'].' successfully.');
+            echo json_encode($finalResult);
+            exit;
+        }
 	}
 	public function show_map() {
 		$user_location = User::where('id',$_POST['user_id'])->first();

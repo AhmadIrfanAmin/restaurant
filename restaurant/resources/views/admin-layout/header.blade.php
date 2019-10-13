@@ -124,13 +124,19 @@
                         </li>
                         <li>
                         <a href="javascript: void(0);">
-                            <i class="fas fa-pencil-alt"></i>
+                            <i class="fas fa-users-cog"></i>
                             <span> Delivery Boys </span>
                             <span class="menu-arrow"></span>
                         </a>
 
                             <ul class="nav-second-level" aria-expanded="false">
-                                
+                                <li>
+                                    <a href="{{route('all.delivery-boys')}}" >
+                                        <i class="fas fa-user-friends mr-1"></i>
+                                        <span>All Delivery Boys</span>
+                                    </a>
+                                </li>
+
                                 <li>
                                     <a href="{{route('delivery-boys','approved')}}" >
                                         <i class="fas fa-user-check mr-1"></i>
@@ -139,7 +145,7 @@
                                 </li>
                                 <li>
                                     <a href="{{route('delivery-boys','blocked')}}" >
-                                        <i class="fas fa-user-times mr-1"></i>
+                                        <i class="fas fa-user-slash mr-1"></i>
                                         <span>Blocked</span>
                                     </a>
                                 </li>

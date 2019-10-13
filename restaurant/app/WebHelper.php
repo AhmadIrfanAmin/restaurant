@@ -54,4 +54,5 @@ class WebHelper {
     	$orders = Order::where('status',$status)->get();
     	return $orders->count();
 	}
+	
 }
