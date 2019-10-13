@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Order;
 use App\Restaurant;
 
 class WebHelper {
@@ -48,7 +49,9 @@ class WebHelper {
 			
 		}
 		return $status_class;
-    }	
-
-	
+    }
+    public static function count_orders($status) {
+    	$orders = Order::where('status',$status)->get();
+    	return $orders->count();
+	}
 }

@@ -123,10 +123,27 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('delivery-boys')}}">
-                                <i class="fas fa-user-cog"></i>
-                                <span>Delivery Boys</span>
-                            </a>
+                        <a href="javascript: void(0);">
+                            <i class="fas fa-pencil-alt"></i>
+                            <span> Delivery Boys </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+
+                            <ul class="nav-second-level" aria-expanded="false">
+                                
+                                <li>
+                                    <a href="{{route('delivery-boys','approved')}}" >
+                                        <i class="fas fa-user-check mr-1"></i>
+                                        <span>Approved</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('delivery-boys','blocked')}}" >
+                                        <i class="fas fa-user-times mr-1"></i>
+                                        <span>Blocked</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
