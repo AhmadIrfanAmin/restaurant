@@ -22,15 +22,16 @@ Route::prefix('admin')->group(function () {
     return view('admin.register');
 });
 
-Route::get('dashboard', function () {
-    return view('admin.dashboard');
-});
-Route::get('orders', 'Admin\OrderController@index')->name('orders');
+Route::get('dashboard', 'Admin\DashboardController@index');
+Route::get('orders/{status?}', 'Admin\OrderController@index')->name('orders');
+Route::get('view-order/{order_id}', 'Admin\OrderController@view_order')->name('view.order');
 Route::get('zones', 'Admin\ZoneController@index')->name('zones');
 Route::get('zone/add', 'Admin\ZoneController@create')->name('add.zone');
-Route::get('zone/store', 'Admin\ZoneController@store')->name('store.zone');
+Route::post('zone/store', 'Admin\ZoneController@store')->name('store.zone');
+Route::post('zone/show', 'Admin\ZoneController@show')->name('show.zone');
 Route::get('delivery-boys', 'Admin\DeliveryBoyController@index')->name('delivery-boys');
 Route::get('delivery-boys/add', 'Admin\DeliveryBoyController@create')->name('add.delivery-boys');
-Route::get('restaurants', 'Admin\RestaurantController@index')->name('restaurants');
-Route::get('restaurant/add', 'Admin\RestaurantController@create')->name('add.restaurant');
+Route::resource('restaurants', 'Admin\RestaurantController');
+Route::post('restaurant-map/show', 'Admin\RestaurantController@show_map')->name('restaurant.map');
+
 });

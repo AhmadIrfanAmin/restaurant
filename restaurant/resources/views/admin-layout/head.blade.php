@@ -5,6 +5,7 @@
   <title>Restaurant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="csrf-token" content="{{ Session::token() }}"> 
   <!-- App favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico">
   <script
@@ -13,7 +14,6 @@
   crossorigin="anonymous"></script>
   <!-- plugin css -->
   <link href="{{asset('public/assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet">
-
   <!-- Plugins css -->
   
   <link href="{{asset('public/assets/libs/jquery-nice-select/nice-select.css')}}" rel="stylesheet">
