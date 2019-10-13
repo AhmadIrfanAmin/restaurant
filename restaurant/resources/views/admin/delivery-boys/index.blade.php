@@ -4,82 +4,92 @@
 
 @parent
 
-Delivery Boy
+Delivery
 
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-      <div class="card-box">
-        <a href="{{ route('add.zone')}}" class="btn  btn-dark waves-effect waves-light float-right">
-          <span class="btn-label"><i class="fas fa-plus"></i></span>Add Delivery Boy
-      </a>
-      <h4 class="header-title mb-4">All Delivery Boys</h4>
-      <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
-          <thead>
-            <tr>
-               <th>#</th>
+  <div class="row">
+        <div class="col-12">
+          <div class="card-box">
+                <h4 class="header-title mb-4">All Delivery Boys</h4>
+                <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
+                  <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Status</th>
+                          <th>Contact</th>
+                          <th>Permanent Address</th>
+                          <th>Address Map</th>
+                          <th >Action</th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                        @foreach($delivery_boys as $delivery_boy) 
+                          <tr>
+                                 <td>
+                                  {{ $delivery_boy->id }}
+                                </td>
+                                <td>
+                                  {{ $delivery_boy->name }}
+                                </td>
+                                <td>
+                                  {{ $delivery_boy->email }}
+                                </td>
+                                <td>
+                                    <span  class="badge badge-{{ WebHelper::get_status_class($delivery_boy->status) }} waves-effect waves-light ">{{ WebHelper::upperfirst($delivery_boy->status) }}
+                                  </span>
+                                </td>
+                                <td>
+                                  {{ $delivery_boy->contact }}
+                                </td>
+                                <td>
+                                  {{ $delivery_boy->permanent_address }}
+                                </td>
+                                <td>
+                                   <button type="button" class="btn btn-info waves-effect waves-light map-address btn-xs" data-value="{{ $delivery_boy->id }}"><i class="fas fa-map-marker-alt"></i></button>
+                                </td>
+                               
+                                <td>
+                                    <button type="button" class="btn btn-info btn-xs waves-effect waves-light"><i class="fas fa-user-check"></i></button>
+                                    <button type="button" class="btn btn-danger btn-xs waves-effect waves-light"><i class="fas fa-user-times"></i></button>
+                                  
+                                </td>
+                          </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+          </div>
+        </div><!-- end col -->
+  </div>
 
-               <th>Delivery Boy Name</th>
-
-               <th>Show Delivery Boy</th>
-
-
-               <th >Action</th>
-
-           </tr>
-
-       </thead>
-       <tbody>
-        {{-- @foreach($bills as $bill)  --}}
-        <tr>
-
-
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-
-            <td>
-                <div class="btn-group dropdown">
-                    <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false">
-                        <i class="mdi mdi-dots-horizontal"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">
-                            <i class="mdi mdi-pencil mr-2 text-muted font-18 vertical-middle"></i>Edit
-                        </a>
-                        <a class="dropdown-item" href="#"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Delete
-                        </a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        {{-- @endforeach --}}
-
-
-
-
-
-
-    </tbody>
-
-</table>
-
-</div>
-
-</div><!-- end col -->
-
-</div>
-
-<!-- end row-->
-
-
+    <!-- end row-->
 
 @endsection
+@section('script-dashboard')
+  <script type="text/javascript">
+     $(document).ready(function() {
+        $('.map-address').on('click',function() {
+
+            var header = `<h3 class="pull-left" id="myModalLabel" style="margin: 0;font-weight: 600;">Address Map</h3>
+                <i  class="pull-right fa fa-bank class-fa"></i>`;
+      
+            var user_id = $(this).data('value');
+            modal(header,'loading','','',false,function(modal_Id) {
+              $.ajax({
+                url: "{{route('delivery-boys.map')}}",
+                type : 'post',
+                data: {user_id: user_id,'_token': $('meta[name=csrf-token]').attr('content')},
+                dataType: "json",
+                success: function(data ) {
+                  $('#'+modal_Id).find('.modal-body').html(data.response);
+                  
+                },
+              });
+            });
+          });
+      });
+  </script>
+@stop
