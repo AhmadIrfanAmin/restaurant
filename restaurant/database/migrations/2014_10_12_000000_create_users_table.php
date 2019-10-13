@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             //$table->enum('status',['online','','','','']);
             $table->string('status');
+            $table->string('user_status');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('contact')->nullable();
