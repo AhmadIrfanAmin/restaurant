@@ -43,18 +43,9 @@ Zone
                 </span>
                 </td>
                 <td>
-                  <div class="btn-group dropdown">
-                    <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false">
-                    <i class="mdi mdi-dots-horizontal"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" href="{{route('edit.zone', ['zone' => $zone->id])}}">
-                      <i class="mdi mdi-pencil mr-2 text-muted font-18 vertical-middle"></i>Edit
-                      </a>
-                      <a class="dropdown-item" href="#"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Delete
-                      </a>
-                    </div>
-                  </div>
+                    <a href="{{route('edit.zone', ['zone' => $zone->id])}}" class="btn btn-info waves-effect waves-light map-address btn-xs"><i class="mdi mdi-pencil"></i></a>
+                     <button type="button" class="btn btn-danger waves-effect waves-light block_zone btn-xs" data-value="{{ $zone->id }}" data-status="blocked"><i class="fas fa-ban"></i>
+                     </button>
                 </td>
               </tr>
             @endforeach
@@ -92,6 +83,32 @@ Zone
               });
             },'modal-remove-orange');
           });
+          $('.block_zone').on('click',function() {
+
+            var zone_id = $(this).data('value');
+            var status = $(this).data('status');
+
+            $.ajax({
+                url: "{{route('block.zone')}}",
+                type : 'post',
+                data: {zone_id: zone_id,status:status,'_token':$('meta[name=csrf-token]').attr('content')},
+                dataType: "json",
+                success: function(data ) {
+                    $.toast({ 
+                      text : data.response,
+                      bgColor : '#31b1c8',
+                      textColor : '#eee', 
+                      allowToastClose : false,
+                      hideAfter : 3000,
+                      stack : 2,                     
+                      textAlign : 'left',
+                      position : 'top-right',
+                      icon: 'info'
+                    });
+                  window.setTimeout(function(){location.reload()},3000)
+                },
+            });
+        });
       });
   </script>
 @stop

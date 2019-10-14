@@ -3,6 +3,7 @@ namespace App;
 
 use App\Order;
 use App\Restaurant;
+use Carbon\Carbon;
 
 class WebHelper {
 
@@ -51,7 +52,7 @@ class WebHelper {
 		return $status_class;
     }
     public static function count_orders($status) {
-    	$orders = Order::where('status',$status)->get();
+    	$orders = Order::where('status',$status)->where('created_at',Carbon::today())->get();
     	return $orders->count();
 	}
 	

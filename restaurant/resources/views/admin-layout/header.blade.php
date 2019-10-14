@@ -25,10 +25,14 @@
                     </a>
                     <div class="dropdown-divider"></div>
                     <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <a href="{{ route('logout') }}" class="dropdown-item notify-item"  onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                             <i class="fe-log-out"></i>
-                            <span>Logout</span>
+                            <span>{{ __('Logout') }}</span>
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </li>
             </ul>
@@ -123,11 +127,11 @@
                             </a>
                         </li>
                         <li>
-                        <a href="javascript: void(0);">
-                            <i class="fas fa-users-cog"></i>
-                            <span> Delivery Boys </span>
-                            <span class="menu-arrow"></span>
-                        </a>
+                            <a href="javascript: void(0);">
+                                <i class="fas fa-users-cog"></i>
+                                <span> Delivery Boys </span>
+                                <span class="menu-arrow"></span>
+                            </a>
 
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
@@ -150,6 +154,12 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.settings') }}">
+                                <i class="fas fa-cogs"></i>
+                                <span> Settings </span>
+                            </a>
                         </li>
                     </ul>
                 </div>

@@ -14,5 +14,22 @@ class DashboardController extends Controller
     	$orders = Order::where('status','assigned')->get();
 		return view('admin.dashboard',compact('orders','delivery_boys'));
 	}
+	// public function dashboard_top_view()
+ //    {
+
+ //        $data['cancel']=$this->order_model->countCancelOrders(0);
+ //        $data['pending']=$this->order_model->countPendingOrders(1);
+ //        $data['completed']=$this->order_model->countOrders(2);
+ //        $data['assign']=$this->order_model->countAssignOrders(1);
+ //        $html = $this->load->view('dashboard-top-view', $data, true);
+ //        if ($html) {
+ //            $res_array = array(
+ //                'msg' => 'success',
+ //                'response' => $html,
+ //            );
+ //            echo json_encode($res_array);
+ //            exit;
+ //        }
+ //    }
 	
 }

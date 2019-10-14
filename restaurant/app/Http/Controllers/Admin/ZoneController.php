@@ -100,4 +100,20 @@ class ZoneController extends Controller
 		Session::flash('success', 'Zone Updated successfully!');
 		return redirect()->route('zones');
     }
+    public function block_zone() {
+
+		$zone = Zone::where('id',$_POST['zone_id'])->first();
+		$zone->status = $_POST['status'];
+        $zone->save();
+
+        if(!$zone){
+            $finalResult = array('msg' => 'error', 'response' => 'Something went');
+            echo json_encode($finalResult);
+            exit;
+        }else{            
+            $finalResult = array('msg' => 'success', 'response' => 'Zone has been blocked successfully.');
+            echo json_encode($finalResult);
+            exit;
+        }
+	}
 }

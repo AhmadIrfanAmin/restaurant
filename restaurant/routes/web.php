@@ -30,7 +30,8 @@ Route::get('zone/add', 'Admin\ZoneController@create')->name('add.zone');
 Route::post('zone/store', 'Admin\ZoneController@store')->name('store.zone');
 Route::post('zone/show', 'Admin\ZoneController@show')->name('show.zone');
 Route::get('zone/{zone}/edit', 'Admin\ZoneController@edit')->name('edit.zone');
-Route::post('zone/{type}', 'Admin\ZoneController@update')->name('update.zone');
+Route::post('zone/{zone}', 'Admin\ZoneController@update')->name('update.zone');
+Route::post('zone/block', 'Admin\ZoneController@block_zone')->name('block.zone');
 Route::get('delivery-boys/{status}', 'Admin\DeliveryBoyController@index')->name('delivery-boys');
 Route::get('delivery-boys', 'Admin\DeliveryBoyController@all_delivery_boys')->name('all.delivery-boys');
 Route::post('delivery-boys/show', 'Admin\DeliveryBoyController@show_map')->name('delivery-boys.map');
@@ -39,5 +40,9 @@ Route::post('delivery-boys/change_status', 'Admin\DeliveryBoyController@change_s
 
 Route::resource('restaurants', 'Admin\RestaurantController');
 Route::post('restaurant-map/show', 'Admin\RestaurantController@show_map')->name('restaurant.map');
-
+Route::get('settings', 'Admin\SettingController@get_settings')->name("admin.settings");
+Route::post('update-settings', 'Admin\SettingController@update_settings')->name("update.settings");
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
