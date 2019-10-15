@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            //$table->enum('status',['online','','','','']);
+            $table->boolean("is_admin")->default(0);
             $table->string('status');
             $table->string('user_status');
             $table->string('latitude')->nullable();
