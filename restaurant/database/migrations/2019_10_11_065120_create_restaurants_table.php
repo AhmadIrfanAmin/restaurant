@@ -17,6 +17,9 @@ class CreateRestaurantsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
+            $table->string('username');
+            $table->string('password');
+            $table->string('contact');
             $table->string('address');
             $table->string('status');
             $table->string('latitude');
