@@ -46,5 +46,17 @@ class DeliveryBoyController extends Controller
 	        exit;
 	    }    
 	}
+	public function delivery_boys_map() {
+		$user_location = User::where('id',$_POST['user_id'])->first();
+	    $html = view('admin.delivery-boys.map-address')->with('user_location', $user_location)->render();
+	    if ($html) {
+	        $res_array = array(
+	            'msg' => 'success',
+	            'response' => $html,
+	        );
+	        echo json_encode($res_array);
+	        exit;
+	    }    
+	}
 	
 }

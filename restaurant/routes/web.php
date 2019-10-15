@@ -14,14 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
    Route::get('login', function () {
     return view('admin.login');
 });
    Route::get('register', function () {
     return view('admin.register');
 });
-
+Route::get('dashboard/top', 'Admin\DashboardController@dashboard_top_view')->name('dashboard.top');
+Route::get('dashboard/bottom', 'Admin\DashboardController@dashboard_bottom_view')->name('dashboard.bottom'); 
 Route::get('dashboard', 'Admin\DashboardController@index');
 Route::get('orders/{status?}', 'Admin\OrderController@index')->name('orders');
 Route::get('view-order/{order_id}', 'Admin\OrderController@view_order')->name('view.order');
@@ -43,6 +44,9 @@ Route::post('restaurant-map/show', 'Admin\RestaurantController@show_map')->name(
 Route::get('settings', 'Admin\SettingController@get_settings')->name("admin.settings");
 Route::post('update-settings', 'Admin\SettingController@update_settings')->name("update.settings");
 });
-Auth::routes();
+Route::group(['prefix' => 'admin'], function(){
+    Auth::routes();
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+

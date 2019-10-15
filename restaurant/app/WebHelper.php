@@ -52,8 +52,16 @@ class WebHelper {
 		return $status_class;
     }
     public static function count_orders($status) {
-    	$orders = Order::where('status',$status)->where('created_at',Carbon::today())->get();
+    	$orders = Order::where('status',$status)->whereDate('created_at',Carbon::today())->get();
     	return $orders->count();
+	}
+	public static function approved_delivery_boys()
+	{
+		return $delivery_boys = User::where('user_status','approved')->where('status','active')->get();
+	}
+	public static function assigned_orders()
+	{
+		return $orders = Order::where('status','assigned')->get();
 	}
 	
 }
