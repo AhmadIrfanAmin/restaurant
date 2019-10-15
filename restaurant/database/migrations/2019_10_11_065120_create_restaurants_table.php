@@ -24,7 +24,6 @@ class CreateRestaurantsTable extends Migration
             $table->string('status');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('contact');
         });
     }
 
