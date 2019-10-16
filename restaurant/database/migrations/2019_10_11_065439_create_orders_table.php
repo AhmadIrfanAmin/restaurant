@@ -15,7 +15,6 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
             $table->string('customer_name');
             $table->string('last_name');
             $table->string('address');
@@ -23,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('buzzer');
             $table->string('contact');
             $table->string('distance');
+            $tablr->string('pickup_time');
             $table->string('status');
             $table->unsignedBigInteger('fk_zone_id');
             $table->integer('delivery_price');
@@ -30,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->enum('tip_by',['customer','restaurant']);
             $table->enum('payment_method',['machine','cash by customer','cash at restaurant']);
             $table->integer('order_price');
+            $table->timestamps();
             $table->unsignedBigInteger('fk_restaurant_id');
             $table->unsignedBigInteger('fk_assigned_driver_id');
 
