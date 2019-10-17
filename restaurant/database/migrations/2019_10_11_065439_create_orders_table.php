@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('buzzer');
             $table->string('contact');
             $table->string('distance');
-            $tablr->string('pickup_time');
+            $table->string('pickup_time');
             $table->string('status');
             $table->unsignedBigInteger('fk_zone_id');
             $table->integer('delivery_price');
