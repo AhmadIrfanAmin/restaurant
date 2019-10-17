@@ -19,8 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
             $table->boolean("is_admin")->default(0);
             $table->string('status');
             $table->string('user_status');
@@ -28,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('contact')->nullable();
             $table->string('permanent_address')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

@@ -15,10 +15,10 @@ class CreateZonesTable extends Migration
     {
         Schema::create('zones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
             $table->string('name');
             $table->string('route_list');
             $table->string('status');
+            $table->timestamps();
         });
     }
 
