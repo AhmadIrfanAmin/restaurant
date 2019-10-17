@@ -2,13 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Restaurant extends Model
+class Restaurant extends Authenticatable
 {
+	protected $guard = 'restaurant';
+
 	protected $fillable = [
-        'name','address','status','latitude','longitude','contact'
+        'name','address','status','latitude','longitude','contact','username','password'
     ];
+    protected $hidden = [
+            'password',
+        ];
     //
     public function orders()
     {

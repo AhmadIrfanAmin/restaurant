@@ -46,17 +46,18 @@ class DeliveryBoyController extends Controller
 	        exit;
 	    }    
 	}
-	public function delivery_boys_map() {
-		$user_location = User::where('id',$_POST['user_id'])->first();
-	    $html = view('admin.delivery-boys.map-address')->with('user_location', $user_location)->render();
-	    if ($html) {
-	        $res_array = array(
-	            'msg' => 'success',
-	            'response' => $html,
-	        );
-	        echo json_encode($res_array);
-	        exit;
-	    }    
+	public function available_delivery_boys() {
+		$pin_map = User::where('is_admin',0)->where('status','active')->where('user_status','approved')->get();
+		$locations=[];
+		foreach ($pin_map as $map) {
+			$lat=$map->latitude;
+			$long=$map->longitude;
+			$address=$map->permanent_address;
+			$locations[]=[$address, $lat, $long];
+		}
+		$locations = json_encode($locations);
+		return view('admin.delivery-boys.pin-map-address',compact('locations'));
 	}
+	
 	
 }

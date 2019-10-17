@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Restaurant;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 class RestaurantController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::where('status', '=!', 'blocked')->get();
         return view('admin.restaurants.index',compact('restaurants'));
     }
 
@@ -37,6 +38,8 @@ class RestaurantController extends Controller
     public function store(Request $request) {
         $this->validate(request(), [
             'name' => 'required',
+            'username' => 'required',
+            'password' => 'required',
             'address' => 'required',
             'status' => 'required',
             'contact' => 'required',
@@ -49,15 +52,17 @@ class RestaurantController extends Controller
 
         $latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude
         $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude
-    
         $restaurant = new Restaurant;
         $restaurant->name = $request->name;
+        $restaurant->username = $request->name;
+        $restaurant->password = Hash::make($request->password);
         $restaurant->address = $address;
         $restaurant->status = $request->status;
         $restaurant->latitude = $latitude;
         $restaurant->longitude = $longitude;
         $restaurant->contact = $request->contact;
         $restaurant->save();
+        Session::flash('success', 'Restaurant added successfully!');
         return redirect()->route('restaurants.index');
     }
 
@@ -88,7 +93,8 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $restaurant=Restaurant::find($id);
+        return view('admin.restaurants.edit',compact('restaurant'));
     }
 
     /**
@@ -100,7 +106,30 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required',
+            'username' => 'required',
+            'address' => 'required',
+            'status' => 'required',
+            'contact' => 'required',
+            ]);
+        $address = $request->address; 
+        $apiKey = 'AIzaSyAztLRM2c-6I3w681cHGtNQgjLVzmIQdt0'; 
+
+        $restaurant = Restaurant::find($id);
+        $restaurant->name = $request->name;
+        $restaurant->username = $request->name;
+        if(!empty($request->password)) {
+            $restaurant->password = Hash::make($request->password); 
+        }
+        $restaurant->address = $address;
+        $restaurant->status = $request->status;
+        $restaurant->latitude = $latitude;
+        $restaurant->longitude = $longitude;
+        $restaurant->contact = $request->contact;
+        $restaurant->save();
+        Session::flash('success', 'Restaurant Updated successfully!');
+        return redirect()->route('restaurants.index');
     }
 
     /**
@@ -109,8 +138,20 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function block_restaurant() {
+
+        $restaurant = Restaurant::where('id',$_POST['restaurant_id'])->first();
+        $restaurant->status = $_POST['status'];
+        $restaurant->save();
+
+        if(!$restaurant){
+            $finalResult = array('msg' => 'error', 'response' => 'Something went');
+            echo json_encode($finalResult);
+            exit;
+        }else{            
+            $finalResult = array('msg' => 'success', 'response' => 'Restaurant has been blocked successfully.');
+            echo json_encode($finalResult);
+            exit;
+        }
     }
 }

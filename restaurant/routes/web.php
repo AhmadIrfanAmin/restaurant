@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
+Route::group(['prefix' => 'admin'], function() {
    Route::get('login', function () {
     return view('admin.login');
 });
@@ -32,8 +32,9 @@ Route::post('zone/store', 'Admin\ZoneController@store')->name('store.zone');
 Route::post('zone/show', 'Admin\ZoneController@show')->name('show.zone');
 Route::get('zone/{zone}/edit', 'Admin\ZoneController@edit')->name('edit.zone');
 Route::post('zone/{zone}', 'Admin\ZoneController@update')->name('update.zone');
-Route::post('zone/block', 'Admin\ZoneController@block_zone')->name('block.zone');
+Route::post('zones/block', 'Admin\ZoneController@block_zone')->name('block.zone');
 Route::get('delivery-boys/{status}', 'Admin\DeliveryBoyController@index')->name('delivery-boys');
+
 Route::get('delivery-boys', 'Admin\DeliveryBoyController@all_delivery_boys')->name('all.delivery-boys');
 Route::post('delivery-boys/show', 'Admin\DeliveryBoyController@show_map')->name('delivery-boys.map');
 Route::post('delivery-boys/change_status', 'Admin\DeliveryBoyController@change_status')->name('delivery-boys.status');
@@ -41,8 +42,10 @@ Route::post('delivery-boys/change_status', 'Admin\DeliveryBoyController@change_s
 
 Route::resource('restaurants', 'Admin\RestaurantController');
 Route::post('restaurant-map/show', 'Admin\RestaurantController@show_map')->name('restaurant.map');
+Route::post('restaurant/block', 'Admin\RestaurantController@block_restaurant')->name('block.restaurant');
 Route::get('settings', 'Admin\SettingController@get_settings')->name("admin.settings");
 Route::post('update-settings', 'Admin\SettingController@update_settings')->name("update.settings");
+Route::get('deliveryboys/available', 'Admin\DeliveryBoyController@available_delivery_boys')->name('pin_map');
 });
 Route::group(['prefix' => 'admin'], function(){
     Auth::routes();
