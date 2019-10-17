@@ -12,7 +12,7 @@ class ZoneController extends Controller
 {
 	use GoogleTrait;
 	public function index() {
-     	$zones = Zone::all();
+     	$zones = Zone::where('status','!=', 'blocked')->get();
      	return view('admin.zones.index',compact('zones'));
 
 	}

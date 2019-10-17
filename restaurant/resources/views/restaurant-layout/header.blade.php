@@ -41,7 +41,7 @@
                     <a href="{{ url('admin/dashboard') }}" class="logo text-center">
                         <span class="logo-lg">
                         {{--  <img src="{{ URL::asset('public/assets/images/logo-light.png')}}" alt="logo-image" style="width: 60%;height: auto;" /> --}}
-                            <span class="logo-lg-text-light">DLV Express</span>
+                            <span class="logo-lg-text-light">DLV Express </span>
                         </span>
                         <span class="logo-sm">
                             <span class="logo-sm-text-dark">DLV</span>
@@ -72,11 +72,7 @@
                                 <span> Dashboards </span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('zones')}}">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <span> Zones </span>
-                        </a>
+                       
                         </li>
 
                         <li>
@@ -120,12 +116,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="{{route('restaurants.index')}}">
-                                <i class="mdi mdi-food-fork-drink"></i>
-                                <span>Restaurants</span>
-                            </a>
-                        </li>
+                        
                         <li>
                             <a href="javascript: void(0);">
                                 <i class="fas fa-users-cog"></i>
@@ -159,12 +150,6 @@
                             <a href="{{ route('admin.settings') }}">
                                 <i class="fas fa-cogs"></i>
                                 <span> Settings </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('pin_map')}}">
-                                <i class="mdi mdi-food-fork-drink"></i>
-                                <span>Available  Boys</span>
                             </a>
                         </li>
                     </ul>
