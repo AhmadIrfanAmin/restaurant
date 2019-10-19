@@ -47,9 +47,16 @@ Route::get('settings', 'Admin\SettingController@get_settings')->name("admin.sett
 Route::post('update-settings', 'Admin\SettingController@update_settings')->name("update.settings");
 Route::get('deliveryboys/available', 'Admin\DeliveryBoyController@available_delivery_boys')->name('pin_map');
 });
-Route::group(['prefix' => 'admin'], function(){
-    Auth::routes();
-});
 
+Auth::routes();
+
+Route::group([
+    'name' => 'restaurant.',
+    'prefix' => 'restaurant'
+], function () {
+		Route::get('{url}/login', 'Restaurant\LoginController@show_login_form');
+		Route::post('store/login', 'Restaurant\LoginController@restaurant_login')->name('login');
+		Route::get('dashboard', 'Restaurant\DashboardController@index')->name('dashboard');
+});
 
 

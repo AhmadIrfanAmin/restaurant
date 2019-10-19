@@ -6,7 +6,7 @@
             <ul class="list-unstyled topnav-menu float-right mb-0">
                 <li class="dropdown notification-list">
                     <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="{{ URL::asset('public/assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle" />
+                        <img src="{{ URL::asset('public/assets-restaurant/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle" />
                         <span class="pro-user-name ml-1">
                         Marcia J. <i class="mdi mdi-chevron-down"></i> 
                         </span>
@@ -40,7 +40,7 @@
                 <div class="logo-box">
                     <a href="{{ url('admin/dashboard') }}" class="logo text-center">
                         <span class="logo-lg">
-                        {{--  <img src="{{ URL::asset('public/assets/images/logo-light.png')}}" alt="logo-image" style="width: 60%;height: auto;" /> --}}
+                        {{--  <img src="{{ URL::asset('public/assets-restaurant/images/logo-light.png')}}" alt="logo-image" style="width: 60%;height: auto;" /> --}}
                             <span class="logo-lg-text-light">DLV Express </span>
                         </span>
                         <span class="logo-sm">

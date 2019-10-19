@@ -27,7 +27,7 @@
                 </div>
             </div>     
             <!-- end page title --> 
-            @include('restaurant.flash-message')
+            @include('restaurant-layout.flash-message')
             @yield('content')
             @include('restaurant-layout.footer')
 
