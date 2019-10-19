@@ -34,7 +34,7 @@ Restaurant
 
                     <h4 class="header-title">Update Restaurant</h4>
 
-                    <form  action="{{route('restaurants.update',$restaurant->id)}}" method="post"><!-- Form row -->
+                    <form  action="{{route('restaurants.update',$restaurant->id)}}" method="post" enctype="multipart/form-data"><!-- Form row -->
 
                             {{csrf_field()}}
 
@@ -69,6 +69,14 @@ Restaurant
                             <label for="inputPassword4" class="col-form-label">Restaurant Address</label>
 
                             <input type="text" class="form-control" name="address" value="{{ $restaurant->address }}">
+
+                        </div>
+
+                        <div class="form-group ">
+
+                            <label class="col-form-label">Logo</label>
+
+                            <input type="file" class="form-control" name="photo">
 
                         </div>
 

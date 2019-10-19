@@ -29,6 +29,9 @@ class WebHelper {
 	public static function upperfirst($val) {
 		return ucfirst($val);
 	}
+	public static function lowercase($val) {
+		return strtolower($val);
+	}
 	public static function get_restaurant_name($rest_id) {
 		return Restaurant::where('id',$rest_id)->pluck('name')->first();
 	}

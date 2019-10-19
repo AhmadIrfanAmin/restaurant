@@ -1,4 +1,4 @@
-@extends('admin-layout.content')
+@extends('restaurant-layout.content')
 
 @section('content')
 <div class="row" id="dashboard-top">

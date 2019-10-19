@@ -34,7 +34,7 @@ Restaurant
 
                     <h4 class="header-title">Add New Restaurant</h4>
 
-                    <form  action="{{route('restaurants.store')}}" method="post"><!-- Form row -->
+                    <form  action="{{route('restaurants.store')}}" method="post" enctype="multipart/form-data"><!-- Form row -->
 
                             {{csrf_field()}}
 
@@ -69,6 +69,14 @@ Restaurant
                             <label for="inputPassword4" class="col-form-label">Restaurant Address</label>
 
                             <input type="text" class="form-control" name="address">
+
+                        </div>
+
+                        <div class="form-group ">
+
+                            <label class="col-form-label">Logo</label>
+
+                            <input type="file" class="form-control" name="photo">
 
                         </div>
 

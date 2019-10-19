@@ -15,7 +15,7 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $restaurants = Restaurant::where('status', '=!', 'blocked')->get();
+        $restaurants = Restaurant::where('status','!=', 'blocked')->get();
         return view('admin.restaurants.index',compact('restaurants'));
     }
 
@@ -36,6 +36,7 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
         $this->validate(request(), [
             'name' => 'required',
             'username' => 'required',
@@ -43,7 +44,19 @@ class RestaurantController extends Controller
             'address' => 'required',
             'status' => 'required',
             'contact' => 'required',
+            'photo' => 'mimes:jpeg,jpg,png|max:10000'
             ]);
+
+        if ($request->hasFile('photo')) {
+            $file_name_with_ext = $request->file('photo')->getClientOriginalName();
+            $file = pathinfo($file_name_with_ext, PATHINFO_FILENAME);
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $file_name = $file . '_' . time() . '.' . $extension;
+            $path = $request->file('photo')->move('images/restaurant', $file_name);
+        } else {
+            $file_name = 'noimage.jpg';
+        }
+
         $address = $request->address; 
         $apiKey = 'AIzaSyAztLRM2c-6I3w681cHGtNQgjLVzmIQdt0'; 
         // Get JSON results from this request
@@ -54,13 +67,15 @@ class RestaurantController extends Controller
         $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude
         $restaurant = new Restaurant;
         $restaurant->name = $request->name;
-        $restaurant->username = $request->name;
+        $restaurant->username = $request->username;
         $restaurant->password = Hash::make($request->password);
         $restaurant->address = $address;
         $restaurant->status = $request->status;
+        $restaurant->photo = $file_name;
         $restaurant->latitude = $latitude;
         $restaurant->longitude = $longitude;
         $restaurant->contact = $request->contact;
+        $restaurant->url = bin2hex(random_bytes(6));
         $restaurant->save();
         Session::flash('success', 'Restaurant added successfully!');
         return redirect()->route('restaurants.index');
@@ -112,13 +127,23 @@ class RestaurantController extends Controller
             'address' => 'required',
             'status' => 'required',
             'contact' => 'required',
+            'photo' => 'mimes:jpeg,jpg,png|max:10000'
             ]);
+
+        if ($request->hasFile('photo')) {
+            $file_name_with_ext = $request->file('photo')->getClientOriginalName();
+            $file = pathinfo($file_name_with_ext, PATHINFO_FILENAME);
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $file_name = $file . '_' . time() . '.' . $extension;
+            $path = $request->file('photo')->move('images/restaurant', $file_name);
+        } 
+
         $address = $request->address; 
         $apiKey = 'AIzaSyAztLRM2c-6I3w681cHGtNQgjLVzmIQdt0'; 
 
         $restaurant = Restaurant::find($id);
         $restaurant->name = $request->name;
-        $restaurant->username = $request->name;
+        $restaurant->username = $request->username;
         if(!empty($request->password)) {
             $restaurant->password = Hash::make($request->password); 
         }
@@ -127,6 +152,10 @@ class RestaurantController extends Controller
         $restaurant->latitude = $latitude;
         $restaurant->longitude = $longitude;
         $restaurant->contact = $request->contact;
+        $restaurant->url = bin2hex(random_bytes(6));
+        if($request->hasFile('photo')){
+            $restaurant->photo = $file_name;
+        }
         $restaurant->save();
         Session::flash('success', 'Restaurant Updated successfully!');
         return redirect()->route('restaurants.index');
