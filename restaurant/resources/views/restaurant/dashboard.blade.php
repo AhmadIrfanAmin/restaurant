@@ -11,9 +11,9 @@
 @endsection
 @section('script-dashboard')
 <!--Morris Chart-->
-<script src="{{ URL::asset('public/assets/libs/morris-js/morris.min.js')}}"></script>
-<script src="{{ URL::asset('public/assets/libs/raphael/raphael.min.js')}}"></script>
-<script src="{{ URL::asset('public/assets/js/pages/apexcharts.init.js')}}"></script>
+<script src="{{ URL::asset('public/assets-restaurant/libs/morris-js/morris.min.js')}}"></script>
+<script src="{{ URL::asset('public/assets-restaurant/libs/raphael/raphael.min.js')}}"></script>
+<script src="{{ URL::asset('public/assets-restaurant/js/pages/apexcharts.init.js')}}"></script>
 <!-- Init js -->
 <script>
 

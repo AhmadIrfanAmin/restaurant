@@ -16,17 +16,17 @@
 
     <!-- App favicon -->
 
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets-restaurant/images/favicon.ico">
 
 
 
     <!-- App css -->
 
-    <link href="{{asset('public/assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets-restaurant/css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <link href="{{asset('public/assets/css/icons.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets-restaurant/css/icons.min.css')}}" rel="stylesheet">
 
-    <link href="{{asset('public/assets/css/app.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets-restaurant/css/app.min.css')}}" rel="stylesheet">
 
 
 
@@ -102,10 +102,10 @@
 
         </footer>
         <!-- Vendor js -->
-        <script src="{{ URL::asset('public/assets/js/vendor.min.js')}}"></script>
+        <script src="{{ URL::asset('public/assets-restaurant/js/vendor.min.js')}}"></script>
 
         <!-- App js -->
-        <script src="{{ URL::asset('public/assets/js/app.min.js')}}"></script>
+        <script src="{{ URL::asset('public/assets-restaurant/js/app.min.js')}}"></script>
 
 
 
