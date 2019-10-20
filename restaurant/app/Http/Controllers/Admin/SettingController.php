@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class SettingController extends Controller
-{
+{//radius
+	//per km charge
    public function get_settings() {
 		$settings =  \DB::table('admin_settings')->select()->get();
 		return view('admin.settings.edit', compact('settings'));

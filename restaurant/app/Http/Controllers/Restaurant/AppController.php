@@ -1,0 +1,206 @@
+<?php
+
+namespace App\Http\Controllers\Restaurant;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Order;
+use App\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+class AppController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    public function create_order(Request $request)
+    {
+        //First Create An ORder
+        // validate incoming request        
+        $validator = Validator::make($request->all(), [
+            'customer_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'appartment_no' => 'required',
+            'buzzer' => 'required',
+            'contact' => 'required',
+            'pickup_time' => 'required',
+            'delivery_price' => 'required',
+            'payment_method' => 'required',
+            'order_price' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            Session::flash('error', $validator->messages()->first());
+            return redirect()->back()->withInput();
+        }
+        else
+        {
+            $order = new Order();
+            $order->customer_name = $request->customer_name;
+            $order->last_name = $request->last_name;
+            $order->address = $request->address;
+            $order->appartment_no = $request->apparment_no;
+            $order->buzzer = $request->buzzer;
+            $order->contact = $request->contact;
+            $order->distance = $request->distance;
+            $order->pickup_time = $request->pickup_time;
+            $order->status = 'pending';
+            $order->delivery_price = $request->delivery_price;
+            $order->tip = $request->tip;
+            $order->tip_by = $request->tip_by;
+            $order->payment_method = $request->payment_method;
+            $order->order_price = $request->order_price;
+
+            $order->fk_zone_id = $request->fk_zone_id;
+            $order->fk_restaurant_id = $request->fk_restaurant_id;
+            
+            $order->save();
+
+            Session::flash('success', 'Order created successfully!');
+            return redirect()->route('');
+
+        }
+    }
+
+    public function find_drivers(Request $request)
+    {
+
+        $rules = array(
+            'longitude' => 'required',
+            'latitude' => 'required',
+            'radius' => 'required',
+            'order_id' => 'required',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return [
+                'status' => 440,
+                'message' => $validator->errors()->first()
+            ];
+        }
+        else
+        {
+            $order = Order::find($request->$order_id);
+            if($order)
+            {
+                $longitude = $request->longitude;
+                $latitude = $request->latitude;
+                $radius = $request->radius;
+                $drivers = \DB::table('users')
+                             ->select(\DB::raw('users.*,
+                              111.111 *
+                              DEGREES(ACOS(COS(RADIANS('.$latitude.'))
+                            * COS(RADIANS(latitude))
+                            * COS(RADIANS('.$longitude.' - longitude))
+                              + SIN(RADIANS('.$longitude.'))
+                            * SIN(RADIANS(latitude)))) AS radius'))
+                              ->where('status', '=','available')
+                              ->having('radius', '<', $radius)
+                              ->get();
+                if (sizeof($arry) > 0)
+                {
+                    foreach($drivers as $driver)
+                    {
+                        $test = $this->notification($driver->device_token,'An Order that need to deliver now! ',$request->order_id);
+                    }
+                    Session::flash('success', 'Notifications Sent to your nearby drivers!');
+                    return redirect()->route('');
+                }
+                else
+                {
+                    Session::flash('No Drivers Found Nearby', $validator->messages()->first());
+                    return redirect()->back()->withInput();
+                }
+                
+            }
+            else
+            {
+
+            }
+        }
+        
+    }
+    /*public function schedule_delivery()
+    {
+        $users = User::where('status','assigned')->get();//get all users which are inside that specific radius 
+        foreach($users as $user)
+        {
+            $test = $this->notification($user->device_token,'An Order that need to deliver now! ',$request->booking_id);
+        }
+    }*/
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
