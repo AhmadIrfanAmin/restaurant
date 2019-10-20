@@ -27,6 +27,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('restaurant')->attempt(['username' => $request->username, 'password' => $request->password])) {
+           
         	
             return redirect()->intended('restaurant/dashboard');
         }

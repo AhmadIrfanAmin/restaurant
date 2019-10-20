@@ -1,6 +1,6 @@
- <div class="col-12">
+     <div class="col-12">
           <div class="card-box">
-             <a href="{{ route('restaurants.create')}}" class="btn  btn-dark waves-effect waves-light float-right">
+             <a href="{{ route('create.order',['url'=> $resta_url ])}}" class="btn  btn-dark waves-effect waves-light float-right">
               <span class="btn-label"><i class="fas fa-plus"></i></span>Create Order
             </a>
              <button type="button" class="btn btn-dark waves-effect waves-light float-right refresh-order">

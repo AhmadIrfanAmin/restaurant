@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin'], function() {
 });
 Route::get('dashboard/top', 'Admin\DashboardController@dashboard_top_view')->name('dashboard.top');
 Route::get('dashboard/bottom', 'Admin\DashboardController@dashboard_bottom_view')->name('dashboard.bottom'); 
-Route::get('dashboard', 'Admin\DashboardController@index');
+Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
 Route::get('orders/{status?}', 'Admin\OrderController@index')->name('orders');
 Route::get('view-order/{order_id}', 'Admin\OrderController@view_order')->name('view.order');
 Route::get('zones', 'Admin\ZoneController@index')->name('zones');
@@ -50,13 +50,15 @@ Route::get('deliveryboys/available', 'Admin\DeliveryBoyController@available_deli
 
 Auth::routes();
 
-Route::group([
-    'name' => 'restaurant.',
-    'prefix' => 'restaurant'
-], function () {
+Route::group(['prefix' => 'restaurant'], function () {
 		Route::get('{url}/login', 'Restaurant\LoginController@show_login_form');
-		Route::post('store/login', 'Restaurant\LoginController@restaurant_login')->name('login');
-		Route::get('dashboard', 'Restaurant\DashboardController@index')->name('dashboard');
+		Route::post('store/login', 'Restaurant\LoginController@restaurant_login')->name('restaurant.login');
+		
+});
+Route::group(['prefix' => 'restaurant',  'middleware' => 'auth:restaurant'], function () {
+	Route::get('{url}/dashboard', 'Restaurant\DashboardController@index')->name('dashboard');
+	Route::get('dashboard/orders', 'Restaurant\DashboardController@order')->name('dashboard.order');
+	Route::get('{url}/create/order', 'Restaurant\DashboardController@create_order')->name('create.order'); 
 });
 
 

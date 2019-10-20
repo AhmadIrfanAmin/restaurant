@@ -67,4 +67,5 @@ class WebHelper {
 		return $orders = Order::where('status','assigned')->get();
 	}
 	
+	
 }

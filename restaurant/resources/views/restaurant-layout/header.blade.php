@@ -84,30 +84,7 @@
 
                             <ul class="nav-second-level" aria-expanded="false">
 
-                                <li>
-                                    <a href="{{route('orders','assigned')}}" >
-                                        <i class="fas fa-check-circle mr-1"></i>
-                                        <span>Assign Orders</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('orders','pending')}}" >
-                                        <i class="mdi mdi-history mr-1"></i>
-                                        <span>Pending</span>
-                                    </a>
-                                </li>
-                                 <li>
-                                    <a href="{{route('orders','pickedup')}}" >
-                                        <i class="fas fa-arrow-alt-circle-right mr-1"></i>
-                                        <span>Pickedup</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('orders','canceled')}}" >
-                                        <i class="far fa-trash-alt mr-1"></i>
-                                        <span>Canceled</span>
-                                    </a>
-                                </li>
+                                
                                  <li>
                                     <a href="{{route('orders')}}" >
                                         <i class="mdi mdi-history mr-1"></i>
@@ -116,40 +93,11 @@
                                 </li>
                             </ul>
                         </li>
-                        
-                        <li>
-                            <a href="javascript: void(0);">
-                                <i class="fas fa-users-cog"></i>
-                                <span> Delivery Boys </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-
-                            <ul class="nav-second-level" aria-expanded="false">
-                                <li>
-                                    <a href="{{route('all.delivery-boys')}}" >
-                                        <i class="fas fa-user-friends mr-1"></i>
-                                        <span>All Delivery Boys</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{route('delivery-boys','approved')}}" >
-                                        <i class="fas fa-user-check mr-1"></i>
-                                        <span>Approved</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('delivery-boys','blocked')}}" >
-                                        <i class="fas fa-user-slash mr-1"></i>
-                                        <span>Blocked</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                       
                         <li>
                             <a href="{{ route('admin.settings') }}">
                                 <i class="fas fa-cogs"></i>
-                                <span> Settings </span>
+                                <span> App Settings </span>
                             </a>
                         </li>
                     </ul>
