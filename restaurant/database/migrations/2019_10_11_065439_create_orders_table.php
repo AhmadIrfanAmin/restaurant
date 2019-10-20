@@ -32,7 +32,7 @@ class CreateOrdersTable extends Migration
             $table->integer('order_price');
             $table->timestamps();
             $table->unsignedBigInteger('fk_restaurant_id');
-            $table->unsignedBigInteger('fk_assigned_driver_id');
+            $table->unsignedBigInteger('fk_assigned_driver_id')->nullable();
 
             $table->foreign('fk_assigned_driver_id')
             ->references('id')->on('users');
