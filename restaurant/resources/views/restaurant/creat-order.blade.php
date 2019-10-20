@@ -28,7 +28,7 @@ Order
 
 
 
-                                        <form  action="" method="post" enctype=""><!-- Form row -->
+                                        <form  action="{{route('store.order')}}" method="post" enctype=""><!-- Form row -->
 
                                             {{csrf_field()}}
 
@@ -109,15 +109,10 @@ Order
                                                     <label for="inputPassword4" class="col-form-label">Zone</label>
 
                                                 <select class="form-control" name="fk_zone_id">
-                                                    <option value="">
-                                                        Select 
-                                                    </option>
-                                                    <option value="">
-                                                        
-                                                    </option>
-                                                    <option value="">
-                                                        
-                                                    </option>
+                                                    <option value="">Select</option>
+                                                    @foreach($zones as $zone)
+                                                    <option value="{{$zone->id}}">{{$zone->name}}</option>
+                                                    @endforeach
                                                 </select>
 
                                                 </div>
@@ -209,6 +204,7 @@ Order
 
                                                 </div>
                                             </div>
+                                            <input type="hidden" value="{{Auth::user()->id}}" name="fk_restaurant_id">
 
                                           
                                          <button type="button" class="btn btn-info waves-effect waves-light">

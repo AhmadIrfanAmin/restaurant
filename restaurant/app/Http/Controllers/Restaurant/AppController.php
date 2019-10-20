@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Order;
 use App\User;
+use App\Zone;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 class AppController extends Controller
@@ -17,20 +18,30 @@ class AppController extends Controller
      */
     public function index()
     {
-        //
+        return view('restaurant.dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function order() {
+      $get_orders = Order::where('fk_restaurant_id',Auth::user()->id)->get();
+      $resta_url =  Restaurant::where('id',Auth::user()->id)->pluck('url')->first();
+      $html = view('restaurant.dashboard-order-view',compact('get_orders','resta_url'))->render();
+      if ($html) {
+        $res_array = array(
+          'msg' => 'success',
+          'response' => $html,
+        );
+        echo json_encode($res_array);
+        exit;
+      }
+    }
+    public function create_order()
     {
-        //
+        $zones = Zone::all();
+        return view('restaurant.creat-order',compact('zones'));
     }
 
-    public function create_order(Request $request)
+    public function store_order(Request $request)
     {
         //First Create An ORder
         // validate incoming request        
