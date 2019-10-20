@@ -28,7 +28,9 @@ Order
 
 
 
-                                         {{-- {!! Form::open(['route' => 'drivertruck.store', 'method' => 'post' ]) !!} --}}
+                                        <form  action="" method="post" enctype=""><!-- Form row -->
+
+                                            {{csrf_field()}}
 
                                             <div class="form-row">
 
