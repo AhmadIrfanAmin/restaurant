@@ -27,9 +27,9 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('restaurant')->attempt(['username' => $request->username, 'password' => $request->password])) {
-           
-        	$get_url = Auth::guard('restaurant')->user()->url;
-            return redirect()->intended('restaurant/'.$get_url.'/dashboard');
+         
+        	   $url = Auth::guard('restaurant')->user()->url;
+            return redirect()->route('create.order',['url'=> $url]);
         }
         return back()->withInput($request->only('username', 'password'));
     }

@@ -229,18 +229,12 @@ Order
                                             <input type="hidden" value="{{Auth::user()->id}}" name="fk_restaurant_id">
 
                                           
-                                         <button type="submit" class="btn btn-info waves-effect waves-light">
-
-                                                    Create Order<span class="btn-label-right"><i class="far fa-save"></i></span>
-                                        </button>
+                                             <button type="submit" class="btn btn-info waves-effect waves-light">Create Order
+                                                <span class="btn-label-right"><i class="far fa-save"></i></span>
+                                            </button>
                                        
-
-
-
                                         </form>
-
-
-
+                                        
                                     </div> <!-- end card-body -->
 
                                 </div> <!-- end card-->

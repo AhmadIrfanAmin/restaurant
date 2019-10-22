@@ -15,9 +15,9 @@ class CreateZonesTable extends Migration
     {
         Schema::create('zones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('route_list');
-            $table->string('status');
+            $table->string('name')->nullable();
+            $table->string('route_list')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
