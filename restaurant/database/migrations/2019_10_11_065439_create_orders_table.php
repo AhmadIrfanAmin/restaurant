@@ -30,10 +30,9 @@ class CreateOrdersTable extends Migration
             $table->enum('tip_by',['customer','restaurant']);
             $table->enum('payment_method',['machine','cash by customer','cash at restaurant']);
             $table->integer('order_price');
-            $table->timestamps();
             $table->unsignedBigInteger('fk_restaurant_id');
             $table->unsignedBigInteger('fk_assigned_driver_id')->nullable();
-
+            $table->timestamps();
             $table->foreign('fk_assigned_driver_id')
             ->references('id')->on('users');
             $table->foreign('fk_zone_id')
