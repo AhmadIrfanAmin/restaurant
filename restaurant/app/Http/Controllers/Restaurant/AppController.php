@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Restaurant;
 use App\User;
 use App\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 class AppController extends Controller
@@ -16,7 +18,7 @@ class AppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($url)
     {
         return view('restaurant.dashboard');
     }
@@ -43,11 +45,12 @@ class AppController extends Controller
 
     public function store_order(Request $request)
     {
+      $resta_url =  Restaurant::where('id',Auth::user()->id)->pluck('url')->first();
         //First Create An ORder
         // validate incoming request        
         $validator = Validator::make($request->all(), [
             'customer_name' => 'required',
-            'last_name' => 'required',
+            // 'last_name' => 'required',
             'address' => 'required',
             'appartment_no' => 'required',
             'buzzer' => 'required',
@@ -68,7 +71,7 @@ class AppController extends Controller
             $order->customer_name = $request->customer_name;
             $order->last_name = $request->last_name;
             $order->address = $request->address;
-            $order->appartment_no = $request->apparment_no;
+            $order->appartment_no = $request->appartment_no;
             $order->buzzer = $request->buzzer;
             $order->contact = $request->contact;
             $order->distance = $request->distance;
@@ -76,8 +79,8 @@ class AppController extends Controller
             $order->status = 'pending';
             $order->delivery_price = $request->delivery_price;
             $order->tip = $request->tip;
-            $order->tip_by = $request->tip_by;
-            $order->payment_method = $request->payment_method;
+            $order->tip_by = 'customer';
+            $order->payment_method = 'cash by customer';
             $order->order_price = $request->order_price;
 
             $order->fk_zone_id = $request->fk_zone_id;
@@ -86,7 +89,7 @@ class AppController extends Controller
             $order->save();
 
             Session::flash('success', 'Order created successfully!');
-            return redirect()->route('');
+            return redirect()->route('restaurant.dashboard',['url'=>$resta_url]);
 
         }
     }

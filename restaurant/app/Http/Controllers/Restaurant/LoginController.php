@@ -28,8 +28,8 @@ class LoginController extends Controller
 
         if (Auth::guard('restaurant')->attempt(['username' => $request->username, 'password' => $request->password])) {
            
-        	
-            return redirect()->intended('restaurant/dashboard');
+        	$get_url = Auth::guard('restaurant')->user()->url;
+            return redirect()->intended('restaurant/'.$get_url.'/dashboard');
         }
         return back()->withInput($request->only('username', 'password'));
     }
