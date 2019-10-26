@@ -96,7 +96,7 @@
                         </li>
                        
                         <li>
-                            <a href="{{route('app.setting',['url'=> WebHelper::get_restaurant_url(\Auth::user()->id)])}}">
+                            <a href="{{route('app.settings',['url'=> WebHelper::get_restaurant_url(\Auth::user()->id)])}}">
                                 <i class="fas fa-cogs"></i>
                                 <span> App Settings </span>
                             </a>

@@ -1,4 +1,4 @@
-@extends('admin-layout.content')
+@extends('restaurant-layout.content')
 
 @section('sidebar')
 
@@ -15,8 +15,8 @@ Setting
 
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Admin Setting</h4>
-                    <form  method="post" id="submit_form" action="{{route('update.settings')}}" >
+                    <h4 class="header-title">Settings</h4>
+                    <form  method="post" id="submit_form" action="{{route('restaurant.settings',['url'=> WebHelper::get_restaurant_url(\Auth::user()->id)])}}" >
                          {{csrf_field()}}
 
                         @foreach ($settings as $setting)
