@@ -8,7 +8,8 @@
                     <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <img src="{{ URL::asset('public/assets-restaurant/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle" />
                         <span class="pro-user-name ml-1">
-                        Marcia J. <i class="mdi mdi-chevron-down"></i> 
+                            {{WebHelper::get_restaurant_username(\Auth::user()->id)}}
+                         <i class="mdi mdi-chevron-down"></i> 
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -41,7 +42,7 @@
                     <a href="{{ url('admin/dashboard') }}" class="logo text-center">
                         <span class="logo-lg">
                         {{--  <img src="{{ URL::asset('public/assets-restaurant/images/logo-light.png')}}" alt="logo-image" style="width: 60%;height: auto;" /> --}}
-                            <span class="logo-lg-text-light">DLV Express </span>
+                            <span class="logo-lg-text-light">{{WebHelper::get_restaurant_name(\Auth::user()->id)}}</span>
                         </span>
                         <span class="logo-sm">
                             <span class="logo-sm-text-dark">DLV</span>
@@ -85,17 +86,17 @@
                             <ul class="nav-second-level" aria-expanded="false">
 
                                 
-                                 <li>
+                                 {{-- <li>
                                     <a href="{{route('orders')}}" >
                                         <i class="mdi mdi-history mr-1"></i>
                                         <span>History</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                        
                         <li>
-                            <a href="{{ route('admin.settings') }}">
+                            <a href="{{route('app.setting',['url'=> WebHelper::get_restaurant_url(\Auth::user()->id)])}}">
                                 <i class="fas fa-cogs"></i>
                                 <span> App Settings </span>
                             </a>

@@ -44,7 +44,7 @@
                                 </td>
                                 <td>
                                  
-                                    <a href="{{route('view.order',$order->id)}}" class="btn btn-purple btn-xs waves-effect waves-light view-order" ><i class="fas fa-info-circle"></i></a>
+                                    <button type="button" class="btn btn-danger btn-xs waves-effect waves-light " ><i class="fas fa-info-circle"></i>Ask Deliver</button>
                                 </td>
                           </tr>
                         @endforeach

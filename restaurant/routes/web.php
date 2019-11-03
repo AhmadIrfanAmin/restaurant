@@ -56,10 +56,11 @@ Route::group(['prefix' => 'restaurant'], function () {
 		
 });
 Route::group(['prefix' => 'restaurant',  'middleware' => 'auth:restaurant'], function () {
-	Route::get('{url}/dashboard', 'Restaurant\AppController@index')->name('dashboard');
+	Route::get('{url}/dashboard', 'Restaurant\AppController@index')->name('restaurant.dashboard');
 	Route::get('dashboard/orders', 'Restaurant\AppController@order')->name('dashboard.order');
 	Route::get('{url}/create/order', 'Restaurant\AppController@create_order')->name('create.order'); 
-	Route::get('store/order', 'Restaurant\AppController@store_order')->name('store.order'); 
+	Route::post('store/order', 'Restaurant\AppController@store_order')->name('store.order');
+		Route::get('{url}/app-settings', 'Restaurant\AppController@setting')->name('app.setting'); 
 });
 
 

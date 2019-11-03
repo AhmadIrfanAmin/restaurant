@@ -66,6 +66,11 @@ class WebHelper {
 	{
 		return $orders = Order::where('status','assigned')->get();
 	}
-	
+	public static function get_restaurant_username($rest_id) {
+		return Restaurant::where('id',$rest_id)->pluck('username')->first();
+	}
+	public static function get_restaurant_url($rest_id) {
+		return Restaurant::where('id',$rest_id)->pluck('url')->first();
+	}
 	
 }

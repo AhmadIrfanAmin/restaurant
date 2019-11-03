@@ -52,6 +52,28 @@ Order
 
                                             </div>
 
+                                                 <div class="form-row">
+
+                                                    <div class="form-group col-md-6">
+
+                                                    <label for="inputPassword4" class="col-form-label">Last Name</label>
+
+                                                    <input type="text" class="form-control"  placeholder="Last Name" name="last_name">
+
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+
+                                                    <label for="inputEmail4" class="col-form-label">Pick Up Time</label>
+
+                                                    <input type="text" class="form-control pickup_time"  placeholder="Pick Up Time" name="pickup_time">
+
+                                                </div>
+
+                                                
+
+                                            </div>
+
                                                
 
                                                
@@ -62,7 +84,7 @@ Order
 
                                                     <label for="inputPassword4" class="col-form-label">Appt</label>
 
-                                                    <input type="text" class="form-control"  placeholder="Service date" name="appartment_no">
+                                                    <input type="text" class="form-control"  placeholder="Appt" name="appartment_no">
 
                                                 </div>
 
@@ -167,7 +189,7 @@ Order
                                               <div class="form-group col-md-6">
 
                                                     <div class="radio radio-primary mb-2">
-                                                        <input type="radio" name="radio" id="radio3" value="option3">
+                                                        <input type="radio" name="payment_method" id="radio3" value="option3">
                                                         <label for="radio3">
                                                             &nbsp;
                                                         </label>
@@ -191,7 +213,7 @@ Order
                                               <div class="form-group col-md-2  mt-3">
 
                                                     <div class="radio radio-primary mb-2">
-                                                        <input type="radio" name="radio" id="radio2" value="option3">
+                                                        <input type="radio" name="payment_method" id="radio2" value="option3">
                                                         <label for="radio2">
                                                             &nbsp;
                                                         </label>
@@ -207,18 +229,12 @@ Order
                                             <input type="hidden" value="{{Auth::user()->id}}" name="fk_restaurant_id">
 
                                           
-                                         <button type="button" class="btn btn-info waves-effect waves-light">
-
-                                                    Create Order<span class="btn-label-right"><i class="far fa-save"></i></span>
-                                        </button>
+                                             <button type="submit" class="btn btn-info waves-effect waves-light">Create Order
+                                                <span class="btn-label-right"><i class="far fa-save"></i></span>
+                                            </button>
                                        
-
-
-
                                         </form>
-
-
-
+                                        
                                     </div> <!-- end card-body -->
 
                                 </div> <!-- end card-->
@@ -232,3 +248,10 @@ Order
 
 
 @endsection
+@section('script-dashboard')
+<script type="text/javascript">
+    
+
+
+</script>
+@stop
