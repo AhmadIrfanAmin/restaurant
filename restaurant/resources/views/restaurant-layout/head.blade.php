@@ -42,6 +42,10 @@
   <link href="{{asset('public/assets-restaurant/css/icons.min.css')}}" rel="stylesheet">
   <link href="{{asset('public/assets-restaurant/css/app.min.css')}}" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  
+  <style type="text/css">
+   div.form-inline label.col-md-6{
+    justify-content: flex-end;
+}
+  </style>
   
 </head>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Restaurant;
+use App\Setting;
+use App\WebHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -77,6 +79,15 @@ class RestaurantController extends Controller
         $restaurant->contact = $request->contact;
         $restaurant->url = bin2hex(random_bytes(6));
         $restaurant->save();
+        $resturant_setting = new Setting;
+        $resturant_setting->meta_tag = 'restaurant';
+        $resturant_setting->meta_label = 'Accept Delivery By Machine';
+        $resturant_setting->meta_key = 'delivery_by_machine';
+        
+        $resturant_setting->meta_input = 'checkbox';
+        $resturant_setting->meta_value = 'no';
+        $resturant_setting->restaurant_url = WebHelper::get_restaurant_url($restaurant->id);
+        $resturant_setting->save();
         Session::flash('success', 'Restaurant added successfully!');
         return redirect()->route('restaurants.index');
     }
@@ -139,7 +150,12 @@ class RestaurantController extends Controller
         } 
 
         $address = $request->address; 
-        $apiKey = 'AIzaSyAztLRM2c-6I3w681cHGtNQgjLVzmIQdt0'; 
+        $apiKey = 'AIzaSyAztLRM2c-6I3w681cHGtNQgjLVzmIQdt0';
+         // Get JSON results from this request
+        $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
+        $geo = json_decode($geo, true); // Convert the JSON to an array
+        $latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude
+        $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude 
 
         $restaurant = Restaurant::find($id);
         $restaurant->name = $request->name;
@@ -152,7 +168,6 @@ class RestaurantController extends Controller
         $restaurant->latitude = $latitude;
         $restaurant->longitude = $longitude;
         $restaurant->contact = $request->contact;
-        $restaurant->url = bin2hex(random_bytes(6));
         if($request->hasFile('photo')){
             $restaurant->photo = $file_name;
         }

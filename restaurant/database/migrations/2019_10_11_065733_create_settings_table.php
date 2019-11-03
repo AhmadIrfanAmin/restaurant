@@ -15,9 +15,13 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name')->nullable();
-            $table->text('key')->nullable();
-            $table->string('used_by')->nullable();
+            $table->string('meta_tag')->nullable();
+            $table->string('meta_label')->nullable();
+            $table->text('meta_key')->nullable();
+            $table->text('meta_value')->nullable();
+            $table->enum('meta_input',['text','checkbox','textarea'])->default('text');
+            $table->string('restaurant_url')->nullable();
+            $table->boolean("by_admin")->default(0);
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@ namespace App;
 
 use App\Order;
 use App\Restaurant;
+use App\Setting;
 use Carbon\Carbon;
 
 class WebHelper {
@@ -72,5 +73,35 @@ class WebHelper {
 	public static function get_restaurant_url($rest_id) {
 		return Restaurant::where('id',$rest_id)->pluck('url')->first();
 	}
+	public static function input_helper($meta_label, $meta_key, $meta_value, $type) {
+		switch ($type) {
+			case 'text': ?>
+			  	<label class="col-form-label"><?php echo ucfirst($meta_label); ?></label>
+				<input type="hidden" value="<?php echo $meta_value; ?>" name="meta_value[<?php echo $meta_key; ?>]"/>
+				<input type="text" class="form-control" name="meta_value[<?php echo $meta_key; ?>]" value="<?php echo $meta_value; ?>" >
+				<?php
+				break;
+			case 'checkbox': ?>
+				<input type="hidden" value="no" name="meta_value[<?php echo $meta_key; ?>]"/>
+				<div class="checkbox checkbox-primary mb-2">
+					<input id="checkbox2" type="checkbox"  name="meta_value[<?php echo $meta_key; ?>]" value="yes" <?php echo $meta_value == 'yes' ? 'checked' : ''; ?> >
+					<label for="checkbox2">
+						<?php echo ucfirst($meta_label); ?>
+					</label>
+				</div>
+				<?php
+				break;
+		}
+	}
+	public static function check_delivery_by_machine($rest_url) {
+		$meta_value = Setting::where('restaurant_url',$rest_url)->pluck('meta_value')->first();
+		return $meta_value=='yes' ? true : false;
+	}
+	public static function get_restaurant_lat_long($rest_url) {
+		return Restaurant::where('url',$rest_url)->first();
+	
+	}
+	
+	
 	
 }
