@@ -18,3 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
 Route::post('/update_order_status','ApiController@update_order_status');
+Route::post('/get_my_orders','ApiController@getMyOrders');
+Route::post('/update_account_setting','ApiController@update_account_setting');
+Route::post('/updateProfile','ApiController@updateProfile');
+Route::post('/login','ApiController@login');
+Route::post('/register','ApiController@register');
+Route::post('/update_token','ApiController@update_token');

@@ -17,17 +17,19 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->boolean("is_admin")->default(0);
+            $table->boolean('is_admin')->default(0);//0 means delivery boy 1 means admin
             $table->string('status')->nullable();//available/unavailable
-            $table->string('user_status')->nullable();//block/active
+            $table->string('user_status')->nullable();//block/verified/unverified
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('contact')->nullable();
             $table->string('device_token')->nullable();
             $table->string('permanent_address')->nullable();
+            //$table->enum('role',['driver','admin','retaurant']);
+            $table->boolean('is_machine_accept')->nullable();
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
